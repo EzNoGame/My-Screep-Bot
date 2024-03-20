@@ -1,37 +1,13 @@
 var SpawnManager = require('SpawnManager');
+var CreepPrototype = require('CreepPrototype');
 module.exports.loop = function()
 {
-    switch(Game.gcl.level)
+    // console.log(Game.gcl.level);
+    SpawnManager.SpawnManager();
+
+    for(n in Game.creeps)
     {
-        case 1:
-            SpawnManager.SpawnManager();
-            break;
-        case 2:
-            console.log("Level 2");
-            break;
-        case 3:
-            console.log("Level 3");
-            break;
-        case 4:
-            console.log("Level 4");
-            break;
-        case 5:
-            console.log("Level 5");
-            break;
-        case 6:
-            console.log("Level 6");
-            break;
-        case 7:
-            console.log("Level 7");
-            break;
-        case 8:
-            console.log("Level 8");
-            break;
-        case 9:
-            console.log("Level 9");
-            break;
-        case 10:
-            console.log("Level 10");
-            break;
+        var creep = Game.creeps[n];
+        creep.harvestResource(RESOURCE_ENERGY);
     }
 }
