@@ -1,5 +1,5 @@
-var SpawnPrototype = require('SpawnPrototype');
-var CreepMinerPrototype = require('CreepMinerPrototype');
+var SpawnPrototype = require('./SpawnPrototype');
+var MinerPrototype = require('./MinerPrototype');
 module.exports.loop = function()
 {   
     for(s in Game.spawns)
