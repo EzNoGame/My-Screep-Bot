@@ -8,6 +8,6 @@ module.exports.loop = function()
     for(n in Game.creeps)
     {
         var creep = Game.creeps[n];
-        creep.harvestResource(RESOURCE_ENERGY);
+        creep.runAsMiner();
     }
 }
