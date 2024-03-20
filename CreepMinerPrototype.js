@@ -1,14 +1,10 @@
-const minerState = 
-{
-    harvest: 'harvest',
-    feed: 'feed',
-}
+var CreepState = require('./CreepState');
 
 Creep.prototype.suitsUp = function()
 {
     if (this.memory.state == null)
     {
-        this.memory.state = minerState.harvest;
+        this.memory.state = CreepState.harvest;
     }
 }
 
@@ -53,21 +49,21 @@ Creep.prototype.runAsMiner = function()
     if (this.store.getFreeCapacity() == 0)
     {
         this.say('feed');
-        this.memory.state = minerState.feed;
+        this.memory.state = CreepState.feedController;
     }
     else if (this.store.getFreeCapacity() == this.store.getCapacity())
     {
         this.say('harvest');
-        this.memory.state = minerState.harvest;
+        this.memory.state = CreepState.harvest;
     }
 
     switch (this.memory.state)
     {
-        case minerState.feed:
+        case CreepState.feedController:
             this.feedController();
             this.say('feed');
             break;
-        case minerState.harvest:
+        case CreepState.harvest:
             this.harvestResource(RESOURCE_ENERGY);
             this.say('harvest');
             break;

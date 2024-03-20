@@ -1,5 +1,5 @@
 var SpawnPrototype = require('SpawnPrototype');
-var CreepPrototype = require('CreepPrototype');
+var CreepMinerPrototype = require('CreepMinerPrototype');
 module.exports.loop = function()
 {   
     for(s in Game.spawns)
@@ -12,7 +12,15 @@ module.exports.loop = function()
     for(n in Game.creeps)
     {
         var creep = Game.creeps[n];
-        creep.suitsUp();
-        creep.runAsMiner();
+        switch(creep.memory.role)
+        {
+            case "miner":
+                creep.suitsUp();
+                creep.runAsMiner();
+                break;
+            
+            case "feeder":
+                creep.suitsUp();
+        }
     }
 }

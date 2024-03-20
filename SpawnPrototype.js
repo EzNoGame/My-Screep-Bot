@@ -14,7 +14,6 @@ Spawn.prototype.suitsUp = function()
 
 Spawn.prototype.spawnManager = function()
 {
-    // console.log(this.store.getCapacity(RESOURCE_ENERGY));
     if(this.store.getFreeCapacity(RESOURCE_ENERGY) == 0)
     {   
         this.memory.state = spawnState.spawn;
@@ -37,6 +36,23 @@ Spawn.prototype.spawnManager = function()
 Spawn.prototype.spawnMiner = function()
 {
     console.log('Spawning a miner');
-    Game.
     this.spawnCreep([WORK, CARRY, MOVE], 'Miner' + Game.time.toString(), {memory: {role: 'miner'}});
+}
+
+Spawn.prototype.spawnBuilder = function()
+{
+    console.log('Spawning a builder');
+    this.spawnCreep([WORK, CARRY, MOVE], 'Builder' + Game.time.toString(), {memory: {role: 'builder'}});
+}
+
+Spawn.prototype.spawnFeeder = function()
+{
+    console.log('Spawning a feeder');
+    this.spawnCreep([WORK, CARRY, MOVE], 'Feeder' + Game.time.toString(), {memory: {role: 'feeder'}});
+}
+
+Spawn.prototype.spawnRepairer = function()
+{
+    console.log('Spawning a repairer');
+    this.spawnCreep([WORK, CARRY, MOVE], 'Repairer' + Game.time.toString(), {memory: {role: 'repairer'}});
 }
