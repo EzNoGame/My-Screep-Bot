@@ -1,3 +1,17 @@
+const minerState = 
+{
+    harvest: 'harvest',
+    feed: 'feed',
+}
+
+Creep.prototype.suitsUp = function()
+{
+    if (this.memory.state == null)
+    {
+        this.memory.state = minerState.harvest;
+    }
+}
+
 Creep.prototype.harvestResource = function(sourceType)
 {
     const source = this.pos.findClosestByPath(FIND_SOURCES, sourceType);
@@ -36,16 +50,26 @@ Creep.prototype.buildStructure = function(structureType)
 
 Creep.prototype.runAsMiner = function()
 {
-    console.log(this.store.getFreeCapacity());
-    switch (true)
+    if (this.store.getFreeCapacity() == 0)
     {
-        case this.store.getFreeCapacity() == 0:
+        this.say('feed');
+        this.memory.state = minerState.feed;
+    }
+    else if (this.store.getFreeCapacity() == this.store.getCapacity())
+    {
+        this.say('harvest');
+        this.memory.state = minerState.harvest;
+    }
+
+    switch (this.memory.state)
+    {
+        case minerState.feed:
             this.feedController();
-            console.log('feed');
+            this.say('feed');
             break;
-        case this.store.getFreeCapacity() > 0:
+        case minerState.harvest:
             this.harvestResource(RESOURCE_ENERGY);
-            console.log('harvest');
+            this.say('harvest');
             break;
     }
 }
