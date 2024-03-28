@@ -1,3 +1,5 @@
+var RoomSetup = require('./Setup');
+
 const spawnState = 
 {
     spawn: "spawn",
@@ -26,7 +28,7 @@ Spawn.prototype.spawnManager = function()
     switch(this.memory.state)
     {
         case spawnState.spawn:
-            this.spawnMiner();
+            if(Memory.creepCount[fixer])
             break;
         case spawnState.rest:
             break;

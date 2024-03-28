@@ -1,10 +1,10 @@
 var CreepState = require('./CreepState');
 
-Creep.prototype.suitsUp = function()
+Creep.prototype.suitsUp = function(defaultState)
 {
     if (this.memory.state == null)
     {
-        this.memory.state = CreepState.harvest;
+        this.memory.state = defaultState;
     }
 }
 
