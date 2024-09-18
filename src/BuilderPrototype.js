@@ -2,11 +2,11 @@ var CreepFeatures = require('./CreepFeatures');
 var CreepState = require('./CreepState');
 
 Creep.prototype.runAsBuilder = function() {
-    if(this.store.getFreeCapacity() == 0) {
+    if(this.store.getFreeCapacity() === 0) {
         this.say('🚧');
         this.memory.state = CreepState.buildStructure;
     }
-    else if(this.store.getUsedCapacity() == 0) {
+    else if(this.store.getUsedCapacity() === 0) {
         this.say('🏠');
         this.memory.state = CreepState.harvest;
     }
